@@ -71,7 +71,7 @@ public class TicTacToeMainToComplete {
 			}while(row<0 || row>numberOfRows-1 || col<0 || col>numberOfCols-1 || !emptyPosition);
 
 			board[row][col]=currentPlayer;
-			freePositions--;
+			
 
 			//Improve to only check if there is no winner.
 			//Check if currentPlayer is a winner in rows
@@ -84,8 +84,7 @@ public class TicTacToeMainToComplete {
 						matches++;
 					}
 					winner = (matches == SIZE);
-				}System.out.println("Rows");
-
+				}
 			}
 			//Check if currentPlayer is a winner in cols
 			//FIXME: COMPLETE!
@@ -97,40 +96,27 @@ public class TicTacToeMainToComplete {
 						matches++;
 					}
 					winner = (matches == SIZE);
-				}System.out.println("Cols");
+				}
 
 			}
 			
 			
 			//Check main diagonal
 			//FIXME: COMPLETE!
-			winner = Boolean.FALSE;
-			matches = 0;
-			for(int i=0;i<numberOfRows && !winner;i++){
-				for(int j=0;j<numberOfCols&& !winner;j++){
-					if(i==j && board[i][j] == (currentPlayer)){
-						matches++;
-					}
-					winner = (matches == SIZE);
-				}System.out.println("Main");
-
+			if (board[0][0]==currentPlayer&&board[1][1]==currentPlayer&&board[2][2]==currentPlayer&& !winner){
+				winner = true;
 			}
 			
-
+			
 			//Check secondary diagonal
 			//FIXME: COMPLETE!
-			winner = Boolean.FALSE;
-			matches = 0;
-			for(int i=0;i<numberOfRows && !winner;i++){
-				for(int j=0;j<numberOfCols&& !winner;j++){
-					if(i+j==2 && board[i][j] == (currentPlayer)){
-						matches++;
-					}
-					winner = (matches == SIZE);
-				}System.out.println("Sec");
-
+			if (board[0][2]==currentPlayer&&board[1][1]==currentPlayer&&board[2][0]==currentPlayer&& !winner){
+				winner = true;
 			}
-						
+					
+			
+			freePositions--; //Moved this function this position so the code checks also if there is a win in last turn
+			
 			//Change currentPlayer
 			if(!winner){
 				if(currentPlayer == (playerX)){
@@ -140,6 +126,7 @@ public class TicTacToeMainToComplete {
 				}
 			}
 		}while(!winner && freePositions>0);
+		
 		if(winner){
 			System.out.println("The winner is player: "+currentPlayer);
 		}else{
