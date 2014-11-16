@@ -55,7 +55,7 @@ public class TicTacToeMainToComplete {
 			emptyPosition = Boolean.FALSE;
 			do{
 				if(freePositions>0 && !winner){
-					System.out.println("Intro a position (row,col) between (0,3):");
+					System.out.println("Intro a position (row,col) between (0,2):"); //Originally the print was (0,3) which was not suitable to the range
 					row = sc.nextInt();
 					col = sc.nextInt();
 					if(row<0 || row>numberOfRows-1 || col<0 || col>numberOfCols-1){
@@ -84,20 +84,49 @@ public class TicTacToeMainToComplete {
 						matches++;
 					}
 					winner = (matches == SIZE);
-				}
+				}System.out.println("Rows");
 
 			}
 			//Check if currentPlayer is a winner in cols
 			//FIXME: COMPLETE!
-			
+			winner = Boolean.FALSE;
+			for(int i=0;i<numberOfCols && !winner;i++){
+				matches = 0;
+				for(int j=0;j<numberOfRows&& !winner;j++){
+					if(board[j][i] == (currentPlayer)){
+						matches++;
+					}
+					winner = (matches == SIZE);
+				}System.out.println("Cols");
+
+			}
 			
 			//Check main diagonal
 			//FIXME: COMPLETE!
-		
+			winner = Boolean.FALSE;
+			for(int i=0;i<numberOfRows && !winner;i++){
+				for(int j=0;j<numberOfCols&& !winner;j++){
+					if(i==j && board[i][j] == (currentPlayer)){
+						matches++;
+					}
+					winner = (matches == SIZE);
+				}System.out.println("Main");
+
+			}
 
 			//Check secondary diagonal
 			//FIXME: COMPLETE!
+			winner = Boolean.FALSE;
+			for(int i=0;i<numberOfRows && !winner;i++){
+				for(int j=0;j<numberOfCols&& !winner;j++){
+					if(i+j==2 && board[i][j] == (currentPlayer)){
+						matches++;
+					}
+					winner = (matches == SIZE);
+				}System.out.println("Sec");
 
+			}
+			//Change currentPlayer
 			if(!winner){
 				if(currentPlayer == (playerX)){
 					currentPlayer = playerO;
