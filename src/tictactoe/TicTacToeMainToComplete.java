@@ -101,9 +101,11 @@ public class TicTacToeMainToComplete {
 
 			}
 			
+			
 			//Check main diagonal
 			//FIXME: COMPLETE!
 			winner = Boolean.FALSE;
+			matches = 0;
 			for(int i=0;i<numberOfRows && !winner;i++){
 				for(int j=0;j<numberOfCols&& !winner;j++){
 					if(i==j && board[i][j] == (currentPlayer)){
@@ -113,10 +115,12 @@ public class TicTacToeMainToComplete {
 				}System.out.println("Main");
 
 			}
+			
 
 			//Check secondary diagonal
 			//FIXME: COMPLETE!
 			winner = Boolean.FALSE;
+			matches = 0;
 			for(int i=0;i<numberOfRows && !winner;i++){
 				for(int j=0;j<numberOfCols&& !winner;j++){
 					if(i+j==2 && board[i][j] == (currentPlayer)){
@@ -126,6 +130,7 @@ public class TicTacToeMainToComplete {
 				}System.out.println("Sec");
 
 			}
+						
 			//Change currentPlayer
 			if(!winner){
 				if(currentPlayer == (playerX)){
