@@ -116,6 +116,25 @@ public class TicTacToeFunctionsToComplete {
 		return false;
 	}
 	private static boolean isWinnerInCols(char currentPlayer,	char[][] board) {
+		if(board!=null){
+			int numberOfRows = board.length;
+			int numberOfCols = board[0].length;
+			boolean winner = Boolean.FALSE;
+			//Check if currentPlayer is a winner in rows
+			int matches = 0;
+			winner = Boolean.FALSE;
+			for(int i=0;i<numberOfCols && !winner;i++){
+				matches = 0;
+				for(int j=0;j<numberOfRows && !winner;j++){
+					if(board[i][j]== (currentPlayer)){
+						matches++;
+					}
+					winner = (matches == SIZE);
+				}
+
+			}
+			return winner;
+		}
 		//FIXME: Complete
 		return false;
 	}
@@ -144,4 +163,3 @@ public class TicTacToeFunctionsToComplete {
 	}
 
 }
-
