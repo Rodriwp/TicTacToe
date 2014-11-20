@@ -70,7 +70,7 @@ public class TicTacToeFunctionsToComplete {
 			emptyPosition = Boolean.FALSE;
 			do{
 				if(freePositions>0 && !winner){
-					System.out.println("Intro a position (row,col) between (0,3):");
+					System.out.println("Intro a position (row,col) between (0,2):");
 					row = sc.nextInt();
 					col = sc.nextInt();
 					if(!isValidRangeOfCells(row,col, numberOfRows, numberOfCols)){
@@ -90,6 +90,12 @@ public class TicTacToeFunctionsToComplete {
 
 			//FIXME: Which is the condition to be the winner?
 			winner = false; 
+			//Check if one of the conditions is full fill. If one of the conditon is true, the if won't check the rest
+			//of conditions
+			if(isWinnerSecondaryDiagonal(currentPlayer,board)||isWinnerMainDiagonal(currentPlayer,board)||
+					isWinnerInCols(currentPlayer,board)||isWinnerInRows(currentPlayer,board)){
+				winner = true;
+			}
 			
 			if(!winner){
 				if(currentPlayer==(playerX)){
@@ -109,18 +115,30 @@ public class TicTacToeFunctionsToComplete {
 	}
 	private static boolean isWinnerSecondaryDiagonal(char currentPlayer,char[][] board) {
 		//FIXME: Complete
-		return false;
+		if(board != null){ // Check that the board is not null 
+			if (board[0][2]==currentPlayer&&board[1][1]==currentPlayer&&board[2][0]==currentPlayer){
+				return true;
+			}
+			    return false;
+		  }
+	    return false;
 	}
 	private static boolean isWinnerMainDiagonal(char currentPlayer,char[][] board) {
 		//FIXME: Complete
-		return false;
+	if(board != null){ // Check that the board is not null 
+		if (board[0][0]==currentPlayer&&board[1][1]==currentPlayer&&board[2][2]==currentPlayer){
+			return true;
+		}
+		    return false;
+	  }
+    return false;
 	}
 	private static boolean isWinnerInCols(char currentPlayer,	char[][] board) {
 		if(board!=null){
 			int numberOfRows = board.length;
 			int numberOfCols = board[0].length;
 			boolean winner = Boolean.FALSE;
-			//Check if currentPlayer is a winner in rows
+			//Check if currentPlayer is a winner in cols
 			int matches = 0;
 			winner = Boolean.FALSE;
 			for(int i=0;i<numberOfCols && !winner;i++){
